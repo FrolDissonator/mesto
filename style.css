@@ -1,16 +1,15 @@
 .page {
   background-color: #000000;
   font-family: 'Inter', Arial, sans-serif;
+  min-height: 100vh;
 }
 
 .page__content {
   max-width: 880px;
-  outline: 1px solid red;
   margin: 0 auto;
 }
 
 .header {
-  outline: 1px solid red;
   width: 100%;
   padding-top: 45px;
 }
@@ -31,6 +30,7 @@
 
 .profile {
   padding-top: 40px;
+  padding-bottom: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,23 +48,23 @@
 }
 
 .profile__description {
-  color: #FFFFFF;
-  outline: 1px solid red;
+  display: grid;
+  grid-template-columns: 294px 24px;
+  gap: 16px 18px;
 }
 
 .profile__title {
   margin: 0;
-  outline: 1px solid red;
+  color: #FFFFFF;
   font-size: 42px;
   font-weight: 500;
   line-height: 1.15;
-  margin-bottom: 16px;
   max-height: 39px;
 }
 
 .profile__subtitle {
   margin: 0;
-  outline: 1px solid red;
+  color: #FFFFFF;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
@@ -72,24 +72,47 @@
 }
 
 .profile__edit-button {
-  margin: 0;
-  margin-left: 18px;
+  padding: 0;
+  background-image: url('./images/profile-edit-button.svg');
+  background-color: #000000;
+  border: none;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  cursor: pointer;
+  transition: opacity 4ms;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
 }
 
 .profile__add-button {
+  background-image: url('./images/profile-add-button.svg');
+  background-color: #000000;
+  min-width: 150px;
+  min-height: 50px;
+  border: 2px solid #FFFFFF;
+  padding: 0;
+  background-size: 22px 22px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: opacity 4ms;
+  box-sizing: border-box;
+}
 
+.profile__add-button:hover {
+  opacity: 0.6;
 }
 
 .cards-grid {
-  outline: 1px solid red;
-  padding-top: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   gap: 20px 17px;
 }
 
 .card {
-  outline: 1px solid red;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -98,11 +121,9 @@
 
 .card__image {
   max-width: 100%;
-  outline: 1px solid red;
 }
 
 .card__description {
-  outline: 1px solid red;
   background-color: #FFFFFF;
   min-height: 79px;
   display: flex;
@@ -123,9 +144,119 @@
 }
 
 .card__like-button {
-  max-width: 22px;
-  max-height: 19px;
+  background-image: url('./images/card-like-button.svg');
+  background-color: #FFFFFF;
+  min-width: 22px;
+  min-height: 19px;
+  border: none;
   margin-right: 20px;
+  cursor: pointer;
+  transition: opacity 4ms;
+}
+
+.card__like-button:hover {
+  opacity: 0.5;
+}
+
+.popup {
+  background-color: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.popup__container {
+  min-width: 430px;
+  background-color: #FFFFFF;
+  position: relative;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.popup__close-button {
+  background-image: url('./images/popup-close-icon.svg');
+  background-color: transparent;
+  min-width: 32px;
+  min-height: 32px;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -40px;
+  margin-right: -40px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: opacity 4ms;
+}
+
+.popup__close-button:hover {
+  opacity: 0.6;
+}
+
+.edit-form {
+  max-width: 358px;
+  margin-top: 34px;
+  margin-bottom: 37px;
+  box-sizing: border-box;
+}
+
+.edit-form__title {
+  color: #000000;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 54px;
+  max-height: 23px;
+}
+
+.edit-form__field {
+  max-height: 84px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.edit-form__input {
+  width: 100%;
+  max-height: 27px;
+  margin-bottom: 30px;
+  padding: 0 0 13px;
+  border: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.edit-form__submit-button {
+  background-color: #000000;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  border: none;
+  min-width: 358px;
+  min-height: 50px;
+  margin-top: 48px;
+  cursor: pointer;
+  transition: opacity 4ms;
+}
+
+.edit-form__submit-button:hover {
+  opacity: 0.8;
 }
 
 .footer {
@@ -146,16 +277,19 @@
     max-width: 648px;
   }
 
+  .profile__description {
+    grid-template-columns: 189px 19px;
+    gap: 14px 10px;
+  }
+
   .profile__title {
     font-size: 27px;
     line-height: 1.2;
-    margin-bottom: 14px;
     max-height: 26px;
   }
 
   .profile__edit-button {
-    margin-left: 10px;
-    max-width: 18px;
+    background-size: 18px 18px;
   }
 
   .profile__subtitle {
@@ -175,15 +309,92 @@
     max-width: 320px;
   }
 
+  .header {
+    padding-top: 28px;
+  }
+
+  .header__logo {
+    margin-bottom: 31.6px;
+    margin-left: 27px;
+    max-width: 103.74px;
+  }
+
+  .content {
+    max-width: 282px;
+    margin: 0 auto;
+  }
+
   .profile {
     flex-direction: column;
+    padding-bottom: 36px;
+    padding-top: 42px;
+  }
+
+  .profile__avatar {
+    margin: 0 0 26px;
   }
 
   .profile__info {
     flex-direction: column;
   }
 
-  .cards-grid {
-    max-width: 282px;
+  .profile__description {
+    width: 100%;
   }
+
+  .profile__title {
+    text-align: center;
+  }
+
+  .profile__subtitle {
+    text-align: center;
+  }
+
+  .profile__add-button {
+    min-height: 50px;
+    width: 100%;
+    background-size: 16px 16px;
+    margin-top: 36px;
+  }
+
+  .footer {
+    max-width: 282px;
+    margin: 0 auto;
+    padding-top: 48px;
+    padding-bottom: 36px;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
+  }
+
+  .popup__container {
+    min-width: 282px;
+  }
+
+  .popup__close-button {
+    min-width: 20px;
+    min-height: 20px;
+    margin-top: -36px;
+    margin-right: 0;
+  }
+
+  .edit-form {
+    max-width: 238px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  .edit-form__title {
+    font-size: 18px;
+    margin-bottom: 75px;
+  }
+
+  .edit-form__submit-button {
+    margin-top: 45px;
+    min-width: 238px;
+    min-height: 46px;
+    font-size: 14px;
+  }
+
 }

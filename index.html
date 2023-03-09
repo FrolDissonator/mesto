@@ -20,54 +20,54 @@
         <div class="profile__info">
           <img src="/images/profile-photo-kusto.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
           <div class="profile__description">
-            <div class="profile__name"></div>
-            <h1 class="profile__title">Жак-Ив Кусто<img src="/images/profile-edit-button.svg" alt="" class="profile__edit-button"></h1>
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button"></button>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <img src="/images/profile-add-button.svg" alt="" class="profile__add-button">
+        <button class="profile__add-button"></button>
       </section>
       <section class="cards-grid">
         <div class="card">
           <img src="/images/photo-karachaevsk.jpg" alt="" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Карачаевск</h2>
-            <img src="/images/card-like-button.svg" alt="" class="card__like-button">
+            <button class="card__like-button"></button>
           </div>
         </div>
         <div class="card">
           <img src="/images/photo-elbrus.png" alt="" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <img src="/images/card-like-button.svg" alt="" class="card__like-button">
+            <button class="card__like-button"></button>
           </div>
         </div>
         <div class="card">
           <img src="/images/photo-dombai.jpg" alt="" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Домбай</h2>
-            <img src="/images/card-like-button.svg" alt="" class="card__like-button">
+            <button class="card__like-button"></button>
           </div>
         </div>
         <div class="card">
           <img src="/images/photo-elbrus.png" alt="" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <img src="/images/card-like-button.svg" alt="" class="card__like-button">
+            <button class="card__like-button"></button>
           </div>
         </div>
         <div class="card">
           <img src="/images/photo-dombai.jpg" alt="" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Домбай</h2>
-            <img src="/images/card-like-button.svg" alt="" class="card__like-button">
+            <button class="card__like-button"></button>
           </div>
         </div>
         <div class="card">
           <img src="/images/photo-karachaevsk.jpg" alt="" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Карачаево-Черкессия</h2>
-            <img src="/images/card-like-button.svg" alt="" class="card__like-button">
+            <button class="card__like-button"></button>
           </div>
         </div>
       </section>
@@ -76,5 +76,19 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
+  <section class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button"></button>
+      <form class="edit-form">
+        <h2 class="edit-form__title">Редактировать профиль</h2>
+        <fieldset class="edit-form__field">
+          <input class="edit-form__input" name="profile-name" type="text" placeholder="Имя профиля">
+          <input class="edit-form__input" name="profile-description" type="text" placeholder="О себе">
+        </fieldset>
+        <button class="edit-form__submit-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
