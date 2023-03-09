@@ -158,6 +158,10 @@
   opacity: 0.5;
 }
 
+.card__like-button_active {
+  background-image: url('./images/card-like-button-active.svg');
+}
+
 .popup {
   background-color: rgba(0, 0, 0, .5);
   position: fixed;
@@ -348,6 +352,8 @@
 
   .profile__subtitle {
     text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
   }
 
   .profile__add-button {
