@@ -7,7 +7,6 @@ let jobInput = formElement.querySelector(".edit-form__input_field_description");
 let profileName = document.querySelector(".profile__title");
 let profileDescription = document.querySelector(".profile__subtitle");
 
-
 const openPopup = function () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
@@ -17,9 +16,6 @@ const openPopup = function () {
 const closePopup = function () {
   popupElement.classList.remove("popup_opened");
 };
-
-popupOpenButtonElement.addEventListener("click", openPopup);
-popupCloseButtonElement.addEventListener("click", closePopup);
 
 function handleFormSubmit (evt) {
     evt.preventDefault();
@@ -31,3 +27,5 @@ function handleFormSubmit (evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
+popupOpenButtonElement.addEventListener("click", openPopup);
+popupCloseButtonElement.addEventListener("click", closePopup);

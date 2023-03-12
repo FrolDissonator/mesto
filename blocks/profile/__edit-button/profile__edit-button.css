@@ -5,7 +5,7 @@
   border: none;
   background-size: 24px 24px;
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: center;
   cursor: pointer;
   transition: opacity 4ms;
 }
