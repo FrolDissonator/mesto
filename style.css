@@ -168,7 +168,7 @@
 }
 
 .popup {
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -180,6 +180,10 @@
   justify-content: center;
   align-items: center;
   display: none;
+}
+
+.popup_opened {
+  display: flex;
 }
 
 .popup__container {
@@ -247,7 +251,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .edit-form__submit-button {
