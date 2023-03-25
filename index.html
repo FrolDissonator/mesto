@@ -25,55 +25,23 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="cards-grid">
-        <div class="card">
-          <img src="./images/photo-ingushetia.jpg" alt="средневековые сторожевые башни Вовнушки" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Ингушетия</h2>
-            <button class="card__like-button" type="button"></button>
+        <template id="card">
+          <div class="card">
+            <img src="#" alt=" " class="card__image">
+            <button class="card__delete-button" type="button"></button>
+            <div class="card__description">
+              <h2 class="card__title"></h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
           </div>
-        </div>
-        <div class="card">
-          <img src="./images/photo-elbrus.jpg" alt="вид на гору Эльбрус" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/photo-dombai.jpg" alt="панорамный вид в Домбае" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Домбай</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/photo-north-osetia.jpg" alt="Даргавсский склеповый могильник" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Северная Осетия</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/photo-arkhyz.jpg" alt="горная река в Архызе" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Архыз</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/photo-karachaevsk.jpg" alt="Шоанинский храм" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Карачаево-Черкессия</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </div>
+        </template>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
-  <section class="popup">
+  <section class="popup popup_profile">
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
       <form class="edit-form" name="edit-profile">
@@ -83,6 +51,19 @@
           <input class="edit-form__input edit-form__input_field_description" name="profile-description" type="text" placeholder="О себе">
         </fieldset>
         <button class="edit-form__submit-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_card">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <form class="edit-form" name="edit-card">
+        <h2 class="edit-form__title">Новое место</h2>
+        <fieldset class="edit-form__field">
+          <input class="edit-form__input edit-form__input_field_place-name" name="place-name" type="text" placeholder="Название">
+          <input class="edit-form__input edit-form__input_field_place-image" name="place-image" type="text" placeholder="Ссылка на картинку">
+        </fieldset>
+        <button class="edit-form__submit-button" type="submit">Создать</button>
       </form>
     </div>
   </section>
