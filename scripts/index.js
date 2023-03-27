@@ -1,10 +1,12 @@
 // popups
 const popupProfile = document.querySelector(".popup_profile");
 const popupCard = document.querySelector(".popup_card");
+const popupImage = document.querySelector(".popup_full-image");
 
 // popups close buttons
 const popupProfileCloseButton = popupProfile.querySelector(".popup__close-button");
 const popupCardCloseButton = popupCard.querySelector(".popup__close-button");
+const popupImageCloseButton = popupImage.querySelector(".popup__close-button")
 
 //popups open buttons
 const popupProfileOpenButton = document.querySelector(".profile__edit-button");
@@ -66,6 +68,7 @@ function createCard (data) {
 
   cardsGrid.append(cardElement);
   setEventListeners(cardElement);
+  cardElement.querySelector(".card__image").addEventListener("click", () => openImage(data));
 
   return cardElement;
 };
@@ -98,6 +101,13 @@ function handleDelete (evt) {
 function addLike (evt) {
   const like = evt.target.closest(".card").querySelector(".card__like-button");
   like.classList.toggle("card__like-button_active");
+};
+
+// open card image function
+function openImage (data) {
+  popupImage.querySelector(".popup__image").src = data.link;
+  popupImage.querySelector(".popup__caption").textContent = data.name;
+  openPopup(popupImage);
 };
 
 // listeners for cards functions
@@ -147,4 +157,8 @@ popupCardOpenButton.addEventListener("click", function () {
 
 popupCardCloseButton.addEventListener("click", function () {
   closePopup(popupCard);
+});
+
+popupImageCloseButton.addEventListener("click", function () {
+  closePopup(popupImage);
 });
