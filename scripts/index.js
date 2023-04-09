@@ -57,7 +57,7 @@ const initialCards = [
 ];
 
 // cards creation functions
-function createCard (data) {
+const createCard = (data) => {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const placeImage = cardElement.querySelector(".card__image");
   const placeTitle = cardElement.querySelector(".card__title");
@@ -77,7 +77,7 @@ initialCards.forEach (elem => {
   createCard(elem);
 });
 
-function handleAddCard (evt) {
+const handleAddCard = (evt) => {
   evt.preventDefault();
 
   const newCard = createCard({
@@ -104,7 +104,7 @@ function addLike (evt) {
 };
 
 // open card image function
-function openImage (data) {
+const openImage = (data) => {
   fullscreenImage.src = data.link;
   fullscreenCaption.textContent = data.name;
   fullscreenImage.alt = data.name;
@@ -120,15 +120,17 @@ function setEventListeners (cardElement) {
 formCard.addEventListener("submit", handleAddCard);
 
 // popups functions
-const openPopup = function (popup) {
+const openPopup = (popup) => {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupByEsc);
 };
 
-const closePopup = function (popup) {
+const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupByEsc);
 };
 
-function handleFormSubmit (evt) {
+const handleFormSubmit = (evt) => {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
@@ -137,6 +139,27 @@ function handleFormSubmit (evt) {
   closePopup(popupProfile);
 };
 
+const closePopupByEsc = (evt) => {
+  if (evt.code == "Escape") {
+    const openedPopup = document.querySelector('.popup_opened')
+    if (openedPopup) {
+      closePopup(openedPopup)
+    }
+  }
+};
+
+const closePopupByClickOnOverlay = () => {
+  const popups = Array.from(document.querySelectorAll('.popup'));
+  popups.forEach(popup => {
+    popup.addEventListener('click', evt => {
+      if (evt.target == evt.currentTarget) {
+        closePopup(popup)
+      };
+    });
+  });
+};
+
+closePopupByClickOnOverlay()
 
 // listeners for popups functions
 formProfile.addEventListener("submit", handleFormSubmit);
@@ -155,3 +178,4 @@ popupCloseButtons.forEach((button) => {
   const popup = button.closest(".popup");
   button.addEventListener("click", () => closePopup(popup));
 });
+
