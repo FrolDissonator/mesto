@@ -33,12 +33,11 @@ const formSetEventListeners = (formToValidate, { inputSelector, submitButtonSele
   });
 };
 
-const checkInputValidity = (input, { errorClass }) => {
-  const currentInputErrorContainer = document.querySelector(`#${input.id}-error`);
+const checkInputValidity = (input, { inputErrorClass, errorClass }) => {
   if (input.checkValidity()) {
-    currentInputErrorContainer.textContent = '';
+    hideInputError(input, { inputErrorClass, errorClass })
   } else {
-    currentInputErrorContainer.textContent = input.validationMessage;
+    showInputError(input, { inputErrorClass, errorClass })
   }
 };
 
@@ -54,6 +53,20 @@ const enableButton = (button, { inactiveButtonClass }) => {
 const disableButton = (button, { inactiveButtonClass }) => {
   button.classList.add(inactiveButtonClass);
   button.setAttribute('disabled', true);
+};
+
+const showInputError = (input, { errorClass, inputErrorClass }) => {
+  const errorElement = document.querySelector(`#${input.id}-error`);
+  input.classList.add(inputErrorClass);
+  errorElement.textContent = input.validationMessage;
+  errorElement.classList.add(errorClass);
+};
+
+const hideInputError = (input, { errorClass, inputErrorClass }) => {
+  const errorElement = document.querySelector(`#${input.id}-error`);
+  input.classList.remove(inputErrorClass);
+  errorElement.classList.remove(errorClass);
+  errorElement.textContent = '';
 };
 
 enableValidation(validationConfig);

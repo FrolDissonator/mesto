@@ -66,11 +66,15 @@ const createCard = (data) => {
   placeImage.alt = data.name;
   placeTitle.textContent = data.name;
 
-  cardsGrid.append(cardElement);
+  addCard(cardElement);
   setEventListeners(cardElement);
   cardElement.querySelector(".card__image").addEventListener("click", () => openImage(data));
 
   return cardElement;
+};
+
+const addCard = (item) => {
+  cardsGrid.append(item);
 };
 
 initialCards.forEach (elem => {
@@ -128,6 +132,7 @@ const openPopup = (popup) => {
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopupByEsc);
+  clearPopup(popup);
 };
 
 const handleFormSubmit = (evt) => {
@@ -161,6 +166,21 @@ const closePopupByClickOnOverlay = () => {
 
 closePopupByClickOnOverlay()
 
+// clear all form inputs and validation errors when popup reopens
+const clearPopup = (popup) => {
+  const inputs = popup.querySelectorAll(".edit-form__input");
+  const errorMessages = popup.querySelectorAll(".edit-form__error-message");
+
+  inputs.forEach(input => {
+    input.value = "";
+    input.classList.remove("edit-form__input_type_error");
+  });
+
+  errorMessages.forEach(message => {
+    message.textContent = "";
+  });
+};
+
 // listeners for popups functions
 formProfile.addEventListener("submit", handleFormSubmit);
 
@@ -171,6 +191,8 @@ popupProfileOpenButton.addEventListener("click", function () {
 });
 
 popupCardOpenButton.addEventListener("click", function () {
+  const submitButton = popupCard.querySelector(".edit-form__submit-button");
+  disableButton(submitButton, validationConfig);
   openPopup(popupCard);
 });
 
@@ -178,4 +200,3 @@ popupCloseButtons.forEach((button) => {
   const popup = button.closest(".popup");
   button.addEventListener("click", () => closePopup(popup));
 });
-
