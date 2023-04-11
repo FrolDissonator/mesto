@@ -11,6 +11,7 @@
   cursor: pointer;
   transition: opacity 4ms;
   box-sizing: border-box;
+  outline: none;
 }
 
 .profile__add-button:hover {
