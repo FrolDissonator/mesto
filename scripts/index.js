@@ -19,6 +19,7 @@ const profileDescription = document.querySelector(".profile__subtitle");
 const formCard = document.querySelector(".edit-form_card");
 const placeNameInput = formCard.querySelector(".edit-form__input_field_place-name");
 const placeImageInput = formCard.querySelector(".edit-form__input_field_place-image");
+const cardSubmitButton = popupCard.querySelector(".edit-form__submit-button");
 
 // cards constants
 const cardsGrid = document.querySelector(".cards-grid");
@@ -132,7 +133,6 @@ const openPopup = (popup) => {
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopupByEsc);
-  clearPopup(popup);
 };
 
 const handleFormSubmit = (evt) => {
@@ -166,33 +166,19 @@ const closePopupByClickOnOverlay = () => {
 
 closePopupByClickOnOverlay()
 
-// clear all form inputs and validation errors when popup reopens
-const clearPopup = (popup) => {
-  const inputs = popup.querySelectorAll(".edit-form__input");
-  const errorMessages = popup.querySelectorAll(".edit-form__error-message");
-
-  inputs.forEach(input => {
-    input.value = "";
-    input.classList.remove("edit-form__input_type_error");
-  });
-
-  errorMessages.forEach(message => {
-    message.textContent = "";
-  });
-};
-
 // listeners for popups functions
 formProfile.addEventListener("submit", handleFormSubmit);
 
 popupProfileOpenButton.addEventListener("click", function () {
+  formProfile.reset();
   openPopup(popupProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 });
 
 popupCardOpenButton.addEventListener("click", function () {
-  const submitButton = popupCard.querySelector(".edit-form__submit-button");
-  disableButton(submitButton, validationConfig);
+  formCard.reset();
+  disableButton(cardSubmitButton, validationConfig);
   openPopup(popupCard);
 });
 

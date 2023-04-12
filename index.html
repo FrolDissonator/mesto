@@ -46,16 +46,14 @@
       <button class="popup__close-button" type="button"></button>
       <form class="edit-form edit-form_profile" name="edit-profile" novalidate>
         <h2 class="edit-form__title">Редактировать профиль</h2>
-        <fieldset class="edit-form__field">
-          <div class="edit-form__input-container">
-            <input class="edit-form__input edit-form__input_field_name" id="name" name="profile-name" type="text" placeholder="Имя" required minlength="2" maxlength="40">
-            <span class="edit-form__error-message" id="name-error"></span>
-          </div>
-          <div class="edit-form__input-container">
-            <input class="edit-form__input edit-form__input_field_description" id="description" name="profile-description" type="text" placeholder="О себе" required minlength="2" maxlength="200">
-            <span class="edit-form__error-message" id="description-error"></span>
-          </div>
-        </fieldset>
+        <div class="edit-form__input-container">
+          <input class="edit-form__input edit-form__input_field_name" id="name" name="profile-name" type="text" placeholder="Имя" required minlength="2" maxlength="40">
+          <span class="edit-form__error-message" id="name-error"></span>
+        </div>
+        <div class="edit-form__input-container">
+          <input class="edit-form__input edit-form__input_field_description" id="description" name="profile-description" type="text" placeholder="О себе" required minlength="2" maxlength="200">
+          <span class="edit-form__error-message" id="description-error"></span>
+        </div>
         <button class="edit-form__submit-button" type="submit">Сохранить</button>
       </form>
     </div>
@@ -65,16 +63,14 @@
       <button class="popup__close-button" type="button"></button>
       <form class="edit-form edit-form_card" name="edit-card" novalidate>
         <h2 class="edit-form__title">Новое место</h2>
-        <fieldset class="edit-form__field">
-          <div class="edit-form__input-container">
-            <input class="edit-form__input edit-form__input_field_place-name" id="card-name" name="place-name" type="text" placeholder="Название" required minlength="2" maxlength="30">
-            <span class="edit-form__error-message" id="card-name-error"></span>
-          </div>
-          <div class="edit-form__input-container">
-            <input class="edit-form__input edit-form__input_field_place-image" id="card-image" name="place-image" type="url" placeholder="Ссылка на картинку" required>
-            <span class="edit-form__error-message" id="card-image-error"></span>
-          </div>
-        </fieldset>
+        <div class="edit-form__input-container">
+          <input class="edit-form__input edit-form__input_field_place-name" id="card-name" name="place-name" type="text" placeholder="Название" required minlength="2" maxlength="30">
+          <span class="edit-form__error-message" id="card-name-error"></span>
+        </div>
+        <div class="edit-form__input-container">
+          <input class="edit-form__input edit-form__input_field_place-image" id="card-image" name="place-image" type="url" placeholder="Ссылка на картинку" required>
+          <span class="edit-form__error-message" id="card-image-error"></span>
+        </div>
         <button class="edit-form__submit-button" type="submit">Создать</button>
       </form>
     </div>
