@@ -1,3 +1,4 @@
+import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
 const validationConfig = {
@@ -12,6 +13,8 @@ const validationConfig = {
 const popupProfile = document.querySelector('.popup_profile');
 const popupCard = document.querySelector('.popup_card');
 const popupImage = document.querySelector('.popup_full-image');
+const fullscreenCaption = popupImage.querySelector('.popup__caption');
+const fullscreenImage = popupImage.querySelector('.popup__image');
 
 //popups open and close buttons
 const popupProfileOpenButton = document.querySelector('.profile__edit-button');
@@ -32,15 +35,10 @@ const placeNameInput = formCard.querySelector('.edit-form__input_field_place-nam
 const placeImageInput = formCard.querySelector('.edit-form__input_field_place-image');
 const formCardInstance = new FormValidator(formCard, validationConfig);
 
-// cards constants
+// Constants
 const cardsGrid = document.querySelector('.cards-grid');
-const cardTemplate = document.getElementById('card').content;
 
-// open card constants
-const fullscreenImage = popupImage.querySelector('.popup__image');
-const fullscreenCaption = popupImage.querySelector('.popup__caption');
-
-// start cards array
+// Start cards array
 const initialCards = [
   {
     name: 'Архыз',
@@ -68,69 +66,23 @@ const initialCards = [
   }
 ];
 
-// cards creation functions
-const createCard = (data) => {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  const placeImage = cardElement.querySelector('.card__image');
-  const placeTitle = cardElement.querySelector('.card__title');
-
-  placeImage.src = data.link;
-  placeImage.alt = data.name;
-  placeTitle.textContent = data.name;
-
-  addCard(cardElement);
-  setEventListeners(cardElement);
-  cardElement.querySelector('.card__image').addEventListener('click', () => openImage(data));
-
-  return cardElement;
-};
-
-const addCard = (item) => {
-  cardsGrid.append(item);
-};
-
-initialCards.forEach (elem => {
-  createCard(elem);
+// create cards
+initialCards.forEach ((elem) => {
+  const card = new Card(elem, '#card');
+  const cardElement = card.generateCard();
+  cardsGrid.append(cardElement);
 });
 
+// add card
 const handleAddCard = (evt) => {
   evt.preventDefault();
 
-  const newCard = createCard({
-    name: placeNameInput.value,
-    link: placeImageInput.value
-  });
+  const card = new Card({name: placeNameInput.value, link: placeImageInput.value}, '#card');
+  const newCardElement = card.generateCard();
 
-  cardsGrid.prepend(newCard);
+  cardsGrid.prepend(newCardElement);
   evt.target.reset();
   closePopup(popupCard);
-};
-
-
-// cards deletion function
-function handleDelete (evt) {
-  const card = evt.target.closest('.card');
-  card.remove();
-};
-
-// cards like function
-function addLike (evt) {
-  const like = evt.target.closest('.card').querySelector('.card__like-button');
-  like.classList.toggle('card__like-button_active');
-};
-
-// open card image function
-const openImage = (data) => {
-  fullscreenImage.src = data.link;
-  fullscreenCaption.textContent = data.name;
-  fullscreenImage.alt = data.name;
-  openPopup(popupImage);
-};
-
-// listeners for cards functions
-function setEventListeners (cardElement) {
-  cardElement.querySelector('.card__delete-button').addEventListener('click', handleDelete);
-  cardElement.querySelector('.card__like-button').addEventListener('click', addLike);
 };
 
 formCard.addEventListener('submit', handleAddCard);
@@ -200,13 +152,4 @@ popupCloseButtons.forEach((button) => {
 formProfileInstance.enableValidation();
 formCardInstance.enableValidation();
 
-// class Card {
-//   constructor (cardData, templateSelector) {
-//     this._cardData = cardData;
-//     this._templateSelector = templateSelector;
-//   }
-
-//   addCard(card) {
-//     this._container.append(card);
-//   }
-// }
+export { openPopup, popupImage, fullscreenCaption, fullscreenImage };
