@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js';
 
 const validationConfig = {
   inputSelector: '.edit-form__input',
@@ -67,11 +68,15 @@ const initialCards = [
 ];
 
 // create cards
-initialCards.forEach ((elem) => {
-  const card = new Card(elem, '#card');
-  const cardElement = card.generateCard();
-  cardsGrid.append(cardElement);
-});
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item, container) => {
+    const card = new Card(item, '#card');
+    const cardElement = card.generateCard();
+    container.append(cardElement);
+  }
+}, '.cards-grid');
+cardList.renderItems();
 
 // add card
 const handleAddCard = (evt) => {
@@ -80,7 +85,7 @@ const handleAddCard = (evt) => {
   const card = new Card({name: placeNameInput.value, link: placeImageInput.value}, '#card');
   const newCardElement = card.generateCard();
 
-  cardsGrid.prepend(newCardElement);
+  cardList.addItem(newCardElement);
   evt.target.reset();
   closePopup(popupCard);
 };

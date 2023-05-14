@@ -1,6 +1,6 @@
 import { popupImage, openPopup, fullscreenImage, fullscreenCaption } from './index.js';
 
-class Card {
+export default class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
     this._link = data.link;
@@ -56,4 +56,3 @@ class Card {
   }
 };
 
-export default Card

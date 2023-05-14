@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
   constructor(
     form,
     { inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }
@@ -67,5 +67,3 @@ class FormValidator {
     errorElement.classList.add(this._errorClass);
   }
 }
-
-export default FormValidator
