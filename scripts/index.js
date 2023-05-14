@@ -1,6 +1,7 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
+import Popup from './Popup.js';
 
 const validationConfig = {
   inputSelector: '.edit-form__input',
@@ -12,7 +13,9 @@ const validationConfig = {
 
 // popups
 const popupProfile = document.querySelector('.popup_profile');
+const popupProfileInstance = new Popup(popupProfile);
 const popupCard = document.querySelector('.popup_card');
+const popupCardInstance = new Popup(popupCard);
 const popupImage = document.querySelector('.popup_full-image');
 const fullscreenCaption = popupImage.querySelector('.popup__caption');
 const fullscreenImage = popupImage.querySelector('.popup__image');
@@ -87,21 +90,13 @@ const handleAddCard = (evt) => {
 
   cardList.addItem(newCardElement);
   evt.target.reset();
-  closePopup(popupCard);
+  popupCardInstance.close();
 };
 
 formCard.addEventListener('submit', handleAddCard);
 
 // popups functions
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByEsc);
-};
 
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByEsc);
-};
 
 const handleFormSubmit = (evt) => {
   evt.preventDefault();
@@ -109,36 +104,14 @@ const handleFormSubmit = (evt) => {
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
 
-  closePopup(popupProfile);
+  popupProfileInstance.close();
 };
-
-const closePopupByEsc = (evt) => {
-  if (evt.code == 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    if (openedPopup) {
-      closePopup(openedPopup)
-    }
-  }
-};
-
-const closePopupByClickOnOverlay = () => {
-  const popups = Array.from(document.querySelectorAll('.popup'));
-  popups.forEach(popup => {
-    popup.addEventListener('click', evt => {
-      if (evt.target == evt.currentTarget) {
-        closePopup(popup)
-      };
-    });
-  });
-};
-
-closePopupByClickOnOverlay()
 
 // listeners for popups functions
 formProfile.addEventListener('submit', handleFormSubmit);
 
 popupProfileOpenButton.addEventListener('click', () => {
-  openPopup(popupProfile);
+  popupProfileInstance.open();
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 });
@@ -146,15 +119,13 @@ popupProfileOpenButton.addEventListener('click', () => {
 popupCardOpenButton.addEventListener('click', () => {
   formCard.reset();
   formCardInstance.disableButton();
-  openPopup(popupCard);
+  popupCardInstance.open();
 });
 
-popupCloseButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
 
 formProfileInstance.enableValidation();
 formCardInstance.enableValidation();
+popupProfileInstance.setEventListeners();
+popupCardInstance.setEventListeners();
 
-export { openPopup, popupImage, fullscreenCaption, fullscreenImage };
+export { popupImage, fullscreenCaption, fullscreenImage };

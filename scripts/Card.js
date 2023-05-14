@@ -1,4 +1,4 @@
-import { popupImage, openPopup, fullscreenImage, fullscreenCaption } from './index.js';
+// import { popupImage, openPopup, fullscreenImage, fullscreenCaption } from './index.js';
 
 export default class Card {
   constructor(data, templateSelector) {
@@ -33,12 +33,12 @@ export default class Card {
     this._likeButton.classList.toggle('card__like-button_active');
   }
 
-  _openImage() {
-    fullscreenImage.src = this._link;
-    fullscreenCaption.textContent = this._name;
-    fullscreenImage.alt = this._name;
-    openPopup(popupImage);
-  }
+  // _openImage() {
+  //   fullscreenImage.src = this._link;
+  //   fullscreenCaption.textContent = this._name;
+  //   fullscreenImage.alt = this._name;
+  //   openPopup(popupImage);
+  // }
 
   generateCard() {
     this._cardElement = this._getTemplate();
