@@ -34,3 +34,28 @@ popupCloseButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+
+const fullscreenCaption = popupImage.querySelector('.popup__caption');
+const fullscreenImage = popupImage.querySelector('.popup__image');
+const popupCloseButtons = document.querySelectorAll('.popup__close-button');
+
+const handleFormSubmit = (evt) => {
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = jobInput.value;
+
+  popupProfileInstance.close();
+};
+
+// import { popupImage, openPopup, fullscreenImage, fullscreenCaption } from './index.js';
+
+  // _openImage() {
+  //   fullscreenImage.src = this._link;
+  //   fullscreenCaption.textContent = this._name;
+  //   fullscreenImage.alt = this._name;
+  //   openPopup(popupImage);
+  // }
+  this._cardImage.addEventListener('click', () => this._openImage());
+
+  const templateElement = document.getElementById('card');
