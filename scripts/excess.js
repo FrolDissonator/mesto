@@ -59,3 +59,39 @@ const handleFormSubmit = (evt) => {
   this._cardImage.addEventListener('click', () => this._openImage());
 
   const templateElement = document.getElementById('card');
+
+// listeners for popups functions
+formProfile.addEventListener('submit', handleFormSubmit);
+
+// popups functions
+const handleFormSubmit = (evt) => {
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = jobInput.value;
+
+  popupProfileInstance.close();
+};
+
+// добавление карточки на страницу
+const handleAddCard = (evt) => {
+  evt.preventDefault();
+  const cardElement = createCard({ name: placeNameInput.value, link: placeImageInput.value });
+  cardList.addItem(cardElement);
+  evt.target.reset();
+  popupCardInstance.close();
+};
+
+formCard.addEventListener('submit', handleAddCard);
+
+// редактирование информации профиля
+const handleFormSubmit = (evt) => {
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = jobInput.value;
+
+  popupProfileInstance.close();
+};
+
+formProfile.addEventListener('submit', handleFormSubmit);

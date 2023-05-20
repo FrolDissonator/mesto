@@ -3,6 +3,8 @@ import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 
 const validationConfig = {
@@ -13,7 +15,7 @@ const validationConfig = {
   errorClass: 'edit-form__error-message'
 };
 
-// popups
+// попапы
 const popupProfile = document.querySelector('.popup_profile');
 const popupProfileInstance = new Popup(popupProfile);
 const popupCard = document.querySelector('.popup_card');
@@ -22,19 +24,20 @@ const popupImage = document.querySelector('.popup_full-image');
 const popupImageInstance = new PopupWithImage(popupImage);
 
 
-//popups open and close buttons
+// кнопки открытия попапов
 const popupProfileOpenButton = document.querySelector('.profile__edit-button');
 const popupCardOpenButton = document.querySelector('.profile__add-button');
 
-// edit form constants
+// константы формы заполнения профиля
 const formProfile = document.querySelector('.edit-form_profile');
 const nameInput = formProfile.querySelector('.edit-form__input_field_name');
 const jobInput = formProfile.querySelector('.edit-form__input_field_description');
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__subtitle');
 const formProfileInstance = new FormValidator(formProfile, validationConfig);
+const profileInfo = new UserInfo(profileName, profileDescription);
 
-// add form constants
+// константы формы добавления карточек
 const formCard = document.querySelector('.edit-form_card');
 const placeNameInput = formCard.querySelector('.edit-form__input_field_place-name');
 const placeImageInput = formCard.querySelector('.edit-form__input_field_place-image');
@@ -43,7 +46,7 @@ const formCardInstance = new FormValidator(formCard, validationConfig);
 // Constants
 const cardsGrid = document.querySelector('.cards-grid');
 
-// Start cards array
+// стартовый массив карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -81,6 +84,7 @@ const createCard = ({ name, link }) => {
   return card.generateCard();
 }
 
+// добавление на страницу стартовых карточек
 const cardList = new Section({
   items: initialCards,
   renderer: (item, container) => {
@@ -89,33 +93,20 @@ const cardList = new Section({
   }
 }, cardsGrid);
 
-// добавление на страницу стартовых карточек
 cardList.renderItems();
 
-// добавление карточки на страницу
-const handleAddCard = (evt) => {
-  evt.preventDefault();
-  const cardElement = createCard({ name: placeNameInput.value, link: placeImageInput.value });
-  cardList.addItem(cardElement);
-  evt.target.reset();
-  popupCardInstance.close();
-};
-
-formCard.addEventListener('submit', handleAddCard);
-
-// popups functions
-const handleFormSubmit = (evt) => {
-  evt.preventDefault();
-
+// создание экземпляров класса PopupWithForm
+const profilePopupInstance = new PopupWithForm(popupProfile, () => {
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
+  profilePopupInstance.close();
+});
 
-  popupProfileInstance.close();
-};
-
-
-// listeners for popups functions
-formProfile.addEventListener('submit', handleFormSubmit);
+const cardPopupInstance = new PopupWithForm(popupCard, () => {
+  const newCard = createCard({ name: placeNameInput.value, link: placeImageInput.value });
+  cardsGrid.prepend(newCard);
+  popupCardInstance.close();
+});
 
 popupProfileOpenButton.addEventListener('click', () => {
   popupProfileInstance.open();
@@ -129,9 +120,21 @@ popupCardOpenButton.addEventListener('click', () => {
   popupCardInstance.open();
 });
 
+// установка слушателей для попапов с формами
+popupProfileOpenButton.addEventListener('click', () => {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
+  profilePopupInstance.open();
+});
+
+popupCardOpenButton.addEventListener('click', () => {
+  cardPopupInstance.open();
+});
 
 formProfileInstance.enableValidation();
 formCardInstance.enableValidation();
 popupProfileInstance.setEventListeners();
 popupCardInstance.setEventListeners();
 popupImageInstance.setEventListeners();
+profilePopupInstance.setEventListeners();
+cardPopupInstance.setEventListeners();
