@@ -8,6 +8,7 @@ import UserInfo from '../components/UserInfo.js';
 import { profileName, profileDescription, popupProfile, popupCard, popupImage, formProfile,
   formCard, validationConfig, initialCards, cardsGrid, nameInput, jobInput, placeNameInput,
   placeImageInput, popupProfileOpenButton, popupCardOpenButton } from '../utils/constants.js';
+import './index.css';
 
 // информация о профиле
 const userInfo = new UserInfo(profileName, profileDescription);
