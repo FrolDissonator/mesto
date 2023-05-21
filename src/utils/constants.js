@@ -53,7 +53,5 @@ export const jobInput = formProfile.querySelector('.edit-form__input_field_descr
 export const profileName = document.querySelector('.profile__title');
 export const profileDescription = document.querySelector('.profile__subtitle');
 
-// константы формы добавления карточек
+// константа формы добавления карточек
 export const formCard = document.querySelector('.edit-form_card');
-export const placeNameInput = formCard.querySelector('.edit-form__input_field_place-name');
-export const placeImageInput = formCard.querySelector('.edit-form__input_field_place-image');

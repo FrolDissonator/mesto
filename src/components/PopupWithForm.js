@@ -6,28 +6,25 @@ export default class PopupWithForm extends Popup {
     this._submitHandler = submitHandler;
     this._formElement = popupElement.querySelector('.edit-form');
     this._submitButton = popupElement.querySelector('.edit-form__submit-button');
+    this._inputList = popupElement.querySelectorAll('.edit-form__input');
   }
 
-// собираем данные всех полей формы
   _getInputValues() {
-    const inputs = this._formElement.querySelectorAll('.edit-form__input');
-    const values = {};
-    inputs.forEach(input => {
-      values[input.name] = input.value;
+    this._values = {};
+    this._inputList.forEach(input => {
+      this._values[input.name] = input.value;
     });
-    return values;
+    return this._values;
   }
 
-// добавляем обработчик сабмита формы
   setEventListeners() {
     super.setEventListeners();
-    this._formElement.addEventListener('submit', (event) => {
-      event.preventDefault();
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
       this._submitHandler(this._getInputValues());
     });
   }
 
-// закрываем и сбрасываем форму
   close() {
     super.close();
     this._formElement.reset();
