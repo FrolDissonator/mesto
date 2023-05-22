@@ -22,7 +22,7 @@ const popupProfileInstance = new PopupWithForm(popupProfile, (inputValues) => {
 
 const popupCardInstance = new PopupWithForm(popupCard, (inputValues) => {
   const newCard = createCard(inputValues);
-  cardsGrid.prepend(newCard);
+  cardList.addItem(newCard);
   popupCardInstance.close();
 });
 
