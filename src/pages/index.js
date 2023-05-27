@@ -1,12 +1,14 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import { profileName, profileDescription, popupProfile, popupCard, popupImage,
   formProfile,formCard, validationConfig, initialCards, cardsGrid, nameInput,
-  jobInput, popupProfileOpenButton, popupCardOpenButton } from '../utils/constants.js';
+  jobInput, popupProfileOpenButton, popupCardOpenButton, popupDelete,
+  cardDeleteButton, popupAvatar, formAvatar } from '../utils/constants.js';
 import './index.css';
 
 // информация о профиле
@@ -26,9 +28,12 @@ const popupCardInstance = new PopupWithForm(popupCard, (inputValues) => {
   popupCardInstance.close();
 });
 
+const popupDeleteInstance = new Popup(popupDelete);
+
 // валидация форм
 const formProfileInstance = new FormValidator(formProfile, validationConfig);
 const formCardInstance = new FormValidator(formCard, validationConfig);
+const formAvatarInstance = new FormValidator(formAvatar, validationConfig);
 
 // создание карточки
 const createCard = ({ name, link }) => {
@@ -64,10 +69,9 @@ popupProfileOpenButton.addEventListener('click', () => {
   popupProfileInstance.open();
 });
 
-
 formProfileInstance.enableValidation();
 formCardInstance.enableValidation();
+formAvatarInstance.enableValidation();
 popupProfileInstance.setEventListeners();
 popupCardInstance.setEventListeners();
 popupImageInstance.setEventListeners();
-
