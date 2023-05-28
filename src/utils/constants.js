@@ -56,6 +56,7 @@ export const nameInput = formProfile.querySelector('.edit-form__input_field_name
 export const jobInput = formProfile.querySelector('.edit-form__input_field_description');
 export const profileName = document.querySelector('.profile__title');
 export const profileDescription = document.querySelector('.profile__subtitle');
+export const profileAvatar = document.querySelector('.profile__avatar');
 export const formAvatar = popupAvatar.querySelector('.edit-form_avatar');
 
 // константа формы добавления карточек

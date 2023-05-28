@@ -8,11 +8,11 @@ import UserInfo from '../components/UserInfo.js';
 import { profileName, profileDescription, popupProfile, popupCard, popupImage,
   formProfile,formCard, validationConfig, initialCards, cardsGrid, nameInput,
   jobInput, popupProfileOpenButton, popupCardOpenButton, popupDelete,
-  cardDeleteButton, popupAvatar, formAvatar } from '../utils/constants.js';
+  cardDeleteButton, popupAvatar, formAvatar, profileAvatar, popupAvatarOpenButton } from '../utils/constants.js';
 import './index.css';
 
 // информация о профиле
-const userInfo = new UserInfo(profileName, profileDescription);
+const userInfo = new UserInfo(profileName, profileDescription, profileAvatar);
 
 // попапы
 const popupImageInstance = new PopupWithImage(popupImage);
@@ -28,7 +28,9 @@ const popupCardInstance = new PopupWithForm(popupCard, (inputValues) => {
   popupCardInstance.close();
 });
 
-const popupDeleteInstance = new Popup(popupDelete);
+const popupAvatarInstance = new PopupWithForm(popupAvatar, () => {
+  popupAvatarInstance.close();
+});
 
 // валидация форм
 const formProfileInstance = new FormValidator(formProfile, validationConfig);
@@ -69,9 +71,15 @@ popupProfileOpenButton.addEventListener('click', () => {
   popupProfileInstance.open();
 });
 
+popupAvatarOpenButton.addEventListener('click', () => {
+  formAvatarInstance.disableButton();
+  popupAvatarInstance.open();
+})
+
 formProfileInstance.enableValidation();
 formCardInstance.enableValidation();
 formAvatarInstance.enableValidation();
 popupProfileInstance.setEventListeners();
 popupCardInstance.setEventListeners();
 popupImageInstance.setEventListeners();
+popupAvatarInstance.setEventListeners();
