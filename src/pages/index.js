@@ -12,7 +12,7 @@ import { profileName, profileDescription, popupProfile, popupCard, popupImage,
 import './index.css';
 
 // информация о профиле
-const userInfo = new UserInfo(profileName, profileDescription, profileAvatar);
+const userInfo = new UserInfo(profileName, profileDescription);
 
 // попапы
 const popupImageInstance = new PopupWithImage(popupImage);

@@ -4,10 +4,11 @@
   min-width: 22px;
   min-height: 19px;
   border: none;
-  margin-right: 20px;
   cursor: pointer;
   transition: opacity 4ms;
   background-repeat: no-repeat;
+  padding: 0;
+  margin-bottom: 3px;
 }
 
 .card__like-button:hover {
