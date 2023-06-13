@@ -26,9 +26,10 @@ export default class Popup {
       this.close();
     });
     this._popup.addEventListener('click', (evt) => {
-      if (evt.target === this._popup) {
+      if (evt.target === this._popup || evt.target.classList.contains('popup__close-button')) {
         this.close();
       }
     });
   }
 }
+

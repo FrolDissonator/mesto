@@ -16,7 +16,7 @@
         <div class="profile__info">
           <div class="profile__avatar-container">
             <button class="profile__avatar-button">
-              <img src="<%=require('./images/profile-photo-kusto.jpg')%>" alt="Жак-Ив Кусто" class="profile__avatar">
+              <img src="#" alt="аватар страницы" class="profile__avatar">
             </button>
           </div>
           <div class="profile__description">
@@ -44,7 +44,7 @@
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
   </div>
   <section class="popup popup_profile">
@@ -54,12 +54,12 @@
         <h2 class="edit-form__title">Редактировать профиль</h2>
         <div class="edit-form__input-container">
           <input class="edit-form__input edit-form__input_field_name" id="name"
-          name="profile-name" type="text" placeholder="Имя" required minlength="2" maxlength="40">
+          name="name" type="text" placeholder="Имя" required minlength="2" maxlength="40">
           <span class="edit-form__error-message" id="name-error"></span>
         </div>
         <div class="edit-form__input-container">
           <input class="edit-form__input edit-form__input_field_description" id="description"
-          name="profile-description" type="text" placeholder="О себе" required minlength="2" maxlength="200">
+          name="description" type="text" placeholder="О себе" required minlength="2" maxlength="200">
           <span class="edit-form__error-message" id="description-error"></span>
         </div>
         <button class="edit-form__submit-button" type="submit">Сохранить</button>

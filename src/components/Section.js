@@ -6,10 +6,16 @@ export default class Section {
   }
 
 // метод отрисовки всех элементов
-  renderItems() {
-    this._items.forEach(item => {
-      this._renderer(item, this._container);
-    });
+  // renderItems() {
+  //   this._items.forEach(item => {
+  //     this._renderer(item, this._container);
+  //   });
+  // }
+
+  renderItems(items) {
+    items.forEach(item => {
+      this._renderer(item)
+    })
   }
 
 // метод добавления DOM элемента в контейнер
