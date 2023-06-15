@@ -1,19 +1,16 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
-import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import { profileName, profileDescription, popupProfile, popupCard, popupImage,
-  formProfile,formCard, validationConfig, cardsGrid, nameInput,
-  jobInput, popupProfileOpenButton, popupCardOpenButton, popupDelete,
-  popupAvatar, formAvatar, profileAvatar, popupAvatarOpenButton } from '../utils/constants.js';
+  formProfile, formCard, validationConfig, cardsGrid, nameInput, jobInput,
+  popupProfileOpenButton, popupCardOpenButton, popupDelete, popupAvatar,
+  formAvatar, profileAvatar, popupAvatarOpenButton } from '../utils/constants.js';
 import './index.css';
-
-let userId;
 
 // API
 const api = new Api({
@@ -23,6 +20,8 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+let userId;
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
@@ -36,10 +35,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 const userInfo = new UserInfo(profileName, profileDescription, profileAvatar);
 
 // попап редкатирования информации профиля
-const popupProfileInstance = new PopupWithForm(popupProfile, profileFormSubmit);
-
-async function profileFormSubmit(data) {
-  popupProfileInstance.renderLoading(true, 'Сохранение...')
+const popupProfileInstance = new PopupWithForm(popupProfile, async (data) => {
+  popupProfileInstance.renderLoading(true)
   try {
     const res = await api.setUserInfo(data);
     userInfo.setUserInfo(res);
@@ -49,13 +46,11 @@ async function profileFormSubmit(data) {
   } finally {
     popupProfileInstance.renderLoading(false);
   }
-};
+});
 
 // попап установки аватара
-const popupAvatarInstance = new PopupWithForm(popupAvatar, avatarFormSubmit)
-
-async function avatarFormSubmit(data) {
-  popupAvatarInstance.renderLoading(true, 'Сохранение...')
+const popupAvatarInstance = new PopupWithForm(popupAvatar, async (data) => {
+  popupAvatarInstance.renderLoading(true)
     try {
       const res = await api.setUserAvatar(data);
       userInfo.setUserAvatar(res);
@@ -65,16 +60,14 @@ async function avatarFormSubmit(data) {
     } finally {
       popupAvatarInstance.renderLoading(false);
     }
-};
+});
 
 // попап открытия фотографии карточки
 const popupImageInstance = new PopupWithImage(popupImage);
 
 // попап добавления карточки
-const popupCardInstance = new PopupWithForm(popupCard, cardFormSubmit);
-
-async function cardFormSubmit(data) {
-  popupCardInstance.renderLoading(true, 'Сохранение...');
+const popupCardInstance = new PopupWithForm(popupCard, async (data) => {
+  popupCardInstance.renderLoading(true);
   try {
     const res = await api.addNewCard(data);
     const card = createCard(res);
@@ -85,7 +78,7 @@ async function cardFormSubmit(data) {
   } finally {
     popupCardInstance.renderLoading(false);
   }
-};
+});
 
 // попап подтверждения удаления карточки
 const popupDeleteInstance = new PopupWithConfirmation(popupDelete, async (card) => {
@@ -174,6 +167,7 @@ popupAvatarOpenButton.addEventListener('click', () => {
   popupAvatarInstance.open();
 });
 
+// установка слушателей на попапы
 popupProfileInstance.setEventListeners();
 popupCardInstance.setEventListeners();
 popupImageInstance.setEventListeners();
