@@ -7,7 +7,9 @@
 .content{width:100%}@media screen and (max-width:767px){.content{margin:0 auto;max-width:282px}}
 .profile{align-items:center;display:flex;justify-content:space-between;padding-bottom:50px;padding-top:40px}@media screen and (max-width:767px){.profile{flex-direction:column;padding-bottom:36px;padding-top:42px}}
 .profile__info{align-items:center;display:flex}@media screen and (max-width:767px){.profile__info{flex-direction:column}}
-.profile__avatar{border-radius:50%;margin-right:30px;max-width:120px}@media screen and (max-width:767px){.profile__avatar{margin:0 0 26px}}
+.profile__avatar-container{margin-right:30px;max-height:120px;max-width:120px}@media screen and (max-width:767px){.profile__avatar-container{margin:0 0 26px}}
+.profile__avatar{border-radius:50%;max-width:120px;min-height:120px;-o-object-fit:cover;object-fit:cover}
+.profile__avatar-button{border:none;border-radius:50%;cursor:pointer;margin:0;max-height:120px;max-width:120px;outline:none;padding:0;position:relative;transition:visibility 4ms}.profile__avatar-button:before{background-color:rgba(0,0,0,.8);background-image:url(5b07a93637363fa9b217.svg);background-position:50%;background-repeat:no-repeat;background-size:26px 26px;bottom:0;content:"";display:block;left:0;position:absolute;right:0;top:0;visibility:hidden}.profile__avatar-button:hover:before{visibility:visible}
 .profile__description{grid-gap:16px 18px;display:grid;gap:16px 18px;grid-template-columns:294px 24px}@media screen and (max-width:1023px){.profile__description{gap:14px 10px;grid-template-columns:189px 19px}}@media screen and (max-width:767px){.profile__description{width:100%}}
 .profile__title{align-self:baseline;color:#fff;font-size:42px;font-weight:500;line-height:1.15;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:1023px){.profile__title{font-size:27px;line-height:1.2}}@media screen and (max-width:767px){.profile__title{text-align:center}}
 .profile__edit-button{background-color:#000;background-image:url(7fe9b5682501835c5843.svg);background-position:50%;background-repeat:no-repeat;background-size:24px 24px;border:none;cursor:pointer;outline:none;padding:0;transition:opacity 4ms}.profile__edit-button:hover{opacity:.6}@media screen and (max-width:1023px){.profile__edit-button{background-size:18px 18px}}
@@ -16,11 +18,13 @@
 .cards-grid{grid-gap:20px 17px;display:grid;gap:20px 17px;grid-template-columns:repeat(auto-fit,282px)}@media screen and (max-width:1023px){.cards-grid{margin-left:auto;margin-right:auto;max-width:581px}}
 .card{border-radius:10px;display:flex;flex-direction:column;max-height:361px;overflow:hidden;position:relative}
 .card__image{min-height:282px;width:100%;z-index:1}
-.card__delete-button{background-color:transparent;background-image:url(161265c632b9f887063c.svg);background-repeat:no-repeat;border:none;cursor:pointer;min-height:19px;min-width:18px;padding:0;position:absolute;right:20px;top:20px;transition:opacity 4ms;z-index:2}.card__delete-button:hover{opacity:.6}
-.card__description{align-items:center;background-color:#fff;display:flex;justify-content:space-between;min-height:79px}
-.card__title{color:#000;font-size:24px;font-weight:900;line-height:1.2;margin:0 0 0 21px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.card__like-button{background-color:#fff;background-image:url(f9cbbc232f4ed178be38.svg);background-repeat:no-repeat;border:none;cursor:pointer;margin-right:20px;min-height:19px;min-width:22px;transition:opacity 4ms}.card__like-button:hover{opacity:.5}
+.card__delete-button{background-color:transparent;background-image:url(161265c632b9f887063c.svg);background-repeat:no-repeat;border:none;cursor:pointer;min-height:19px;min-width:18px;outline:none;padding:0;position:absolute;right:20px;top:20px;transition:opacity 4ms;z-index:2}.card__delete-button:hover{opacity:.6}
+.card__description{align-items:center;background-color:#fff;display:flex;justify-content:space-between;min-height:79px;padding-left:21px;padding-right:21px}
+.card__title{color:#000;font-size:24px;font-weight:900;line-height:1.2;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card__like-container{align-items:center;display:flex;flex-direction:column}
+.card__like-button{background-color:#fff;background-image:url(f9cbbc232f4ed178be38.svg);background-repeat:no-repeat;border:none;cursor:pointer;margin-bottom:3px;min-height:19px;min-width:22px;padding:0;transition:opacity 4ms}.card__like-button:hover{opacity:.5}
 .card__like-button_active{background-image:url(d750ae7834bd9bfe5181.svg)}
+.card__likes-number{font-size:13px;font-weight:400;line-height:1.2}
 .footer{flex-shrink:0;padding-bottom:60px;padding-top:66px}@media screen and (max-width:767px){.footer{margin:0 auto;max-width:282px;padding-bottom:36px;padding-top:48px}}
 .footer__copyright{color:#545454;font-size:18px;font-weight:400;line-height:1.2;margin:0}@media screen and (max-width:767px){.footer__copyright{font-size:14px}}
 .popup{background-color:rgba(0,0,0,.5);bottom:0;display:flex;left:0;min-height:100%;min-width:100%;opacity:0;position:fixed;right:0;top:0;transition:visibility .3s,opacity .3s linear;visibility:hidden;z-index:3}
@@ -36,6 +40,6 @@
 .edit-form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;font-weight:400;line-height:1.2;padding:0 0 13px;width:100%}
 .edit-form__input_type_error{border-bottom:1px solid red}
 .edit-form__error-message{color:red;font-size:12px;font-weight:400;line-height:1.2}
-.edit-form__submit-button{background-color:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;font-weight:400;line-height:1.2;margin-top:6px;min-height:50px;min-width:358px;padding:0;transition:opacity 4ms}.edit-form__submit-button:hover{opacity:.8}@media screen and (max-width:767px){.edit-form__submit-button{font-size:14px;margin-top:45px;min-height:46px;min-width:238px}}
+.edit-form__submit-button{background-color:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;font-weight:400;line-height:1.2;margin-top:6px;min-height:50px;min-width:358px;padding:0;transition:opacity 4ms}.edit-form__submit-button:hover{opacity:.8}@media screen and (max-width:767px){.edit-form__submit-button{font-size:14px;min-height:46px;min-width:238px}}
 .edit-form__submit-button_disabled{background-color:#fff;border:1px solid #c4c4c4;color:#c4c4c4;cursor:not-allowed}.edit-form__submit-button_disabled:hover{opacity:1}
 
